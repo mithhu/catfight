@@ -1,0 +1,65 @@
+table {
+  border: 1px solid green;
+}
+
+.grey,
+.yellow,
+.green {
+  width: 50px;
+  height: 50px;
+}
+
+.grey {
+  background-color: #f8f9fa;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.chessboard {
+  text-align: center;
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+img {
+  height: 45px;
+  width: 45px;
+}
+
+.playerImage {
+  height: 200px;
+  width: 200px;
+}
+
+.bodyView {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.buttonContainer {
+  text-align: center;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+.imageContainer {
+  text-align: center;
+  display: flex;
+  padding-top: 10px;
+  justify-content: space-around;
+  background-color: teal;
+  height: 130px;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin: 0px;
+}
+
+#cerseiActive, #daenerysActive {
+  color: red;
+}

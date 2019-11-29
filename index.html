@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Catfight</title>
+
+  <!-- CSS & Fonts -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+
+<body>
+  <div class="buttonContainer">
+    <button type="button" class="btn btn-primary" onclick="initialization()" id="start">
+      Start Game
+    </button>
+    <button type="button" class="btn btn-primary" onclick="reset()" id="reset">
+      Reset Game
+    </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      Rules
+    </button>
+    <div class="modal fade" data-keyboard="false" data-backdrop="static" id="exampleModalCenter" tabindex="-1"
+      role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Rules</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div style="text-align: justify">
+              <p>1. It's a battle between two players.</p>
+              <p>2. You can move a maximum of 2 spaces horizontally or vertically.</p>
+              <p>3. To know which players turn it is, you need to check the sidebar(left & right) in which it shows the
+                player is active or not.</p>
+              <p>4. You can collect weapons by going to the weapons position and increase your damage point.</p>
+              <p>5. ### The higher the damage point the better. ###</p>
+              <p>6. You have to be at the same location of your opponents location to start the fight.</p>
+              <p>7. You can also start the fight anytime by clicking on "Start Fight".</p>
+              <p>8. On attacking mode, opponents point will be substracted by your damage point.</p>
+              <p>9. On defensive mode, opponents point will remain same but when they attack you, your point will be
+                substracted by only half of your opponents damage point.</p>
+              <p>10. To know how many points will be substracted from your point when the opponent attacks you or how
+                many
+                points will be substracted from your opponents point when you attack the opponent, you need to check the
+                Attacking Point.</p>
+              <p>11. You can reset the game anytime by clicking on "Reset"</p>
+              <p>12. You will win the the game if your opponents point becomes zero or less than zero.</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="imageContainer">
+    <div>
+      <h5>Light Bringer</h5>
+      <img src="css/lightbringer.png" />
+      <h5>Damage: 20</h5>
+    </div>
+    <div>
+      <h5>Fire</h5>
+      <img src="css/fire.png" />
+      <h5>Damage: 30</h5>
+    </div>
+    <div>
+      <h5>Dragon Glass</h5>
+      <img src="css/dragon_glass.png" />
+      <h5>Damage: 40</h5>
+    </div>
+    <div>
+      <h5>Dragon</h5>
+      <img src="css/dragon.png" />
+      <h5>Damage: 50</h5>
+    </div>
+  </div>
+  <div class="bodyView">
+    <div>
+      <img class="playerImage" src="css/daenerys.png" />
+      <h2>Daenerys</h2>
+      <h4 id="pointDaenerys">Point:</h4>
+      <h4 id="pointDamageDaenerys">Damage Point:</h4>
+      <h4 id="pointAttackingDaenerys">Attacking Point:</h4>
+      <button type="button" class="btn btn-primary" onclick="daenerysAttack()" id="daenerysAttack">
+        Attack
+      </button>
+      <button type="button" class="btn btn-primary" onclick="daenerysDefend()" id="daenerysDefend">
+        Defend
+      </button>
+      <h2 id="daenerysActive"></h2>
+    </div>
+    <div id="tableContainer"></div>
+    <div>
+      <img class="playerImage" src="css/cersei.png" />
+      <h2>Cersei</h2>
+      <h4 id="pointCersei">Point:</h4>
+      <h4 id="pointDamageCersei">Damage Point:</h4>
+      <h4 id="pointAttackingCersei">Attacking Point:</h4>
+      <button onclick="cerseiAttack()" class="btn btn-primary" id="cerseiAttack">Attack</button>
+      <button onclick="cerseiDefend()" class="btn btn-primary" id="cerseiDefend">Defend</button>
+      <h2 id="cerseiActive"></h2>
+    </div>
+  </div>
+
+  <div class="modal fade" data-keyboard="false" data-backdrop="static" id="daenerysWon" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Game Result</h5>
+        </div>
+        <div class="modal-body">
+          <div>
+            <h3> Daenerys has won the game</h3>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div>
+            <h4>Do You want to restart the game?</h4>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button onclick="reset()" type="button" class="btn btn-secondary" data-dismiss="modal">Restart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" data-keyboard="false" data-backdrop="static" id="cerseiWon" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Game Result</h5>
+        </div>
+        <div class="modal-body">
+          <div>
+            <h3>Cersei has won the game</h3>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div>
+            <h4>Do You want to restart the game?</h4>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button onclick="reset()" type="button" class="btn btn-secondary" data-dismiss="modal">Restart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" data-keyboard="false" data-backdrop="static" id="fightStart" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div>
+            <h4>Do you want to start the fight?</h4>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button onclick="fightStart()" type="button" class="btn btn-secondary" data-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" data-keyboard="false" data-backdrop="static" id="fightStartNow" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div>
+            <h4>To start the fight, click on the button below</h4>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button onclick="fightStart()" type="button" class="btn btn-secondary" data-dismiss="modal">Start
+            Fighting</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+  <script src="js/movement.js"></script>
+  <script src="js/route.js"></script>
+  <script src="js/fight.js"></script>
+  <script src="js/reset.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/initialization.js"></script>
+
+  <!-- Optional JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
