@@ -22,7 +22,7 @@ class Weapon {
 
 //inserting values on the new instance of object
 const daenerysAvatar =
-    "<img src='../../catfight/css/daenerys.png' width='16' height='16'>";
+    "<img src='./css/daenerys.png' width='16' height='16'>";
 const daenerys = new Player(
     "daenerys",
     100,
@@ -34,7 +34,7 @@ const daenerys = new Player(
     true
 );
 const cerseiAvatar =
-    "<img src='../../catfight/css/cersei.png' width='16' height='16'>";
+    "<img src='./css/cersei.png' width='16' height='16'>";
 const cersei = new Player(
     "cersei",
     100,
@@ -46,16 +46,16 @@ const cersei = new Player(
     false
 );
 const fireAvatar =
-    "<img src='../../catfight/css/fire.png' width='16' height='16'>";
+    "<img src='./css/fire.png' width='16' height='16'>";
 const fire = new Weapon("fire", 30, fireAvatar, "weapon");
 const lightBringerAvatar =
-    "<img src='../../catfight/css/lightbringer.png' width='16' height='16'>";
+    "<img src='./css/lightbringer.png' width='16' height='16'>";
 const lightbringer = new Weapon("fire", 20, lightBringerAvatar, "weapon");
 const dragonGlassAvatar =
-    "<img src='../../catfight/css/dragon_glass.png' width='16' height='16'>";
+    "<img src='./css/dragon_glass.png' width='16' height='16'>";
 const dragonGlass = new Weapon("fire", 40, dragonGlassAvatar, "weapon");
 const dragonAvatar =
-    "<img src='../../catfight/css/dragon.png' width='16' height='16'>";
+    "<img src='./css/dragon.png' width='16' height='16'>";
 const dragon = new Weapon("fire", 50, dragonAvatar, "weapon");
 
 

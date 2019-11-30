@@ -1,6 +1,4 @@
-table {
-  border: 1px solid green;
-}
+
 
 .grey,
 .yellow,
@@ -62,4 +60,8 @@ h3 {
 
 #cerseiActive, #daenerysActive {
   color: red;
+}
+
+td {
+  border: 2px solid teal;
 }
