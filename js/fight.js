@@ -70,7 +70,7 @@ const cerseiAttack = () => {
         cerseiAttackingPointSpan.innerText = cerseiAttackingPoint;
         daenerysAttackingPoint = daenerys.damagePoint;
         daenerysAttackingPointSpan.innerText = daenerysAttackingPoint;
-        cerseiFiightToggle();
+        cerseiFightToggle();
     }
 };
 
